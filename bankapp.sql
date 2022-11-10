@@ -19,14 +19,16 @@ CREATE TABLE customers(
 );
 
 /* sample customers */
-INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, username, password)
-VALUES ('Random User One', 'user1@bank.com', 'Number 1 at address city', '123456689011', 'user1', '12345pass');
-INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, username, password)
-VALUES ('Random User Two', 'user2@bank.com', 'Number 2 at address city', '123456689012', 'user2', '12345pass');
-INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, username, password)
-VALUES ('Random User Three', 'user3@bank.com', 'Number 3 at address city', '123456689013', 'user3', '12345pass');
-INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, username, password)
-VALUES ('Random User Four', 'user4@bank.com', 'Number 4 at address city', '123456689014', 'user4', '12345pass');
+INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, password, clearance)
+VALUES ('Mahadi Abuhuraira', 'mamt4real@bank.com', 'Number 1 at address city', '123456689011', '12345pass', 'admin');
+INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, password)
+VALUES ('Random User One', 'user1@bank.com', 'Number 1 at address city', '123456689011', '12345pass');
+INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, password)
+VALUES ('Random User Two', 'user2@bank.com', 'Number 2 at address city', '123456689012',  '12345pass');
+INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, password)
+VALUES ('Random User Three', 'user3@bank.com', 'Number 3 at address city', '123456689013',  '12345pass');
+INSERT INTO customers(customer_name, customer_email, customer_address, customer_bvn, password)
+VALUES ('Random User Four', 'user4@bank.com', 'Number 4 at address city', '123456689014', '12345pass');
 
 /* accounts table and account no sequence */
 CREATE SEQUENCE account_no_seq
@@ -45,11 +47,11 @@ CREATE TABLE accounts (
 );
 
 /* sample accounts */
-INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User One', 3500.23, 1);
-INSERT INTO accounts(account_name, account_balance, customer_id, account_type) VALUES ('Random User One', 155500.23, 1, 'Current');
-INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User One', 40500.00, 2);
-INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User One', 1500.23, 3);
-INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User One', 877.23, 4);
+INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Mahadi Abuhuraira', 3500.23, 1);
+INSERT INTO accounts(account_name, account_balance, customer_id, account_type) VALUES ('Mahadi Abuhuraira', 155500.23, 1, 'Current');
+INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User Two', 40500.00, 2);
+INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User Three', 1500.23, 3);
+INSERT INTO accounts(account_name, account_balance, customer_id) VALUES ('Random User Four', 877.23, 4);
 
 CREATE SEQUENCE card_no_seq
     INCREMENT 1
