@@ -1,0 +1,74 @@
+<div class="menu_page admindashboard">
+  <h4 class="text-center display-3 text-primary text-medium submenu_title">
+    Dashboard
+  </h4>
+  <div class="row px-4 justify-content-around">
+    <div class="card col-lg-3 col-md-5 col-xs-12 m-3 p-0 border-primary">
+      <div class="card-header text-white bg-primary">
+        <svg class="dashboard_icons">
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-users') }}"
+          />
+        </svg>
+        <span>Customers</span>
+      </div>
+      <div class="card-body text-primary">
+        {% for info in customers_info %}
+        <h5 class="card-title d-flex">
+          <span style="flex: 1">{{info.category}}:</span
+          ><span style="flex: 1"> {{info.count}}</span>
+        </h5>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="card col-lg-3 col-md-5 col-xs-12 m-3 p-0 border-info">
+      <div class="card-header text-white bg-info">
+        <svg class="dashboard_icons">
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-credit-card') }}"
+          />
+        </svg>
+        <span>Accounts</span>
+      </div>
+      <div class="card-body text-info">
+        {% for info in accounts_info %}
+        <h5 class="card-title d-flex">
+          <span style="flex: 1"
+            >{{info.account_type}} ({{info.no_accounts}})</span
+          >
+          <span style="flex: 1">{{info.total_balance | currency}}</span>
+        </h5>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="card col-lg-3 col-md-5 col-xs-12 m-3 p-0 border-success">
+      <div class="card-header text-white bg-success">
+        <svg class="dashboard_icons">
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-bookmark') }}"
+          />
+        </svg>
+        <span>Transactions</span>
+      </div>
+      <div class="card-body text-success">
+        {% for info in transactions_info %}
+        <h5
+          class="card-title d-flex {% if info.transaction_type | trantype == 'DEBIT' %}text-danger{% endif %}"
+        >
+          <span style="flex: 0.6">{{info.transaction_type | trantype}}:</span>
+          <span style="flex: 1">
+            {{info.total | currency}}
+            <svg class="dashboard_icons">
+              <use xlink:href="{{ url_for('static',
+              path='/img/icons.svg#icon-trending-{% if info.transaction_type |
+              trantype == "DEBIT" %}down{% else %}up{% endif %}') }}" />
+            </svg>
+          </span>
+        </h5>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

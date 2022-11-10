@@ -1,0 +1,76 @@
+<div class="menu_page accounts p-4">
+  <h4 class="text-center display-3 text-primary text-medium submenu_title">
+    Manage Customers
+  </h4>
+  <form action="" class="row my-2">
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="account_no">Customer Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Name"
+        value="{{customer_name}}"
+        id="customer_name"
+        name="customer_name"
+      />
+    </div>
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="name">Phone Number</label>
+      <input
+        type="date"
+        class="form-control"
+        placeholder="Phone"
+        value="{{customer_phone}}"
+        id="customer_phone"
+        name="customer_phone"
+      />
+    </div>
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="name">BVN</label>
+      <input
+        type="date"
+        class="form-control"
+        placeholder="BVN"
+        id="customer_bvn"
+        value="{{customer_bvn}}"
+        name="customer_bvn"
+      />
+    </div>
+    <div class="form-group col-3" style="display: flex; align-items: flex-end">
+      <button type="submit" class="btn btn-primary">Fetch</button>
+    </div>
+  </form>
+  <div class="table-responsive">
+    <table class="table table-hover .auto-w">
+      <thead>
+        <tr class="bg-primary">
+          <th scope="col">S/N</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
+          <th scope="col">Phone</th>
+          <th scope="col">BVN</th>
+          <th>Address</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cus in customers %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{cus.customer_name}}</td>
+          <td>{{cus.customer_email}}</td>
+          <td>{{cus.customer_phone}}</td>
+          <td>{{cus.customer_bvn}}</td>
+          <td>{{cus.customer_address}}</td>
+          <td><buttton class="btn btn-danger">Remove</buttton></td>
+        </tr>
+        {% endfor %}
+        <!-- <tr class="bg-secondary">
+          <th class="text-right" colspan="2">Total</th>
+          <th class="text-right"></th>
+          <th class="" colspan="2"></th>
+        </tr> -->
+      </tbody>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="homepage row mt-4">
+  <div class="col-xs-12 col-lg-7 p-4 homepage--left">
+    <h3>This is our Home Page</h3>
+    <p>We offer 24/7 Banking Services Our customers are our concern</p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Atque libero
+      quas ducimus delectus ratione unde architecto, beatae officiis illo earum?
+      Nemo adipisci ad illo exercitationem tenetur consequatur molestiae ex in?
+    </p>
+    <p>
+      Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptas eum ex
+      aperiam dolorem dolor nesciunt quia soluta, aut porro obcaecati. Laborum
+      consectetur dolorem quidem alias impedit, facilis, quibusdam hic eligendi,
+      blanditiis vero placeat in quas est officiis tenetur nemo maiores culpa
+      animi. Voluptatem ipsa, sapiente, assumenda facere quis fugiat nisi odio
+      porro enim perferendis ut expedita suscipit ad veniam culpa, consectetur
+      consequuntur laborum eaque. Consequatur recusandae eligendi labore
+      praesentium tempora similique esse officiis fugit doloribus provident
+      ducimus culpa, laudantium id voluptatem sunt aperiam iste ullam quasi
+      optio at repudiandae quaerat ipsa. Minus consequuntur voluptas voluptatem
+      maxime culpa libero quaerat dignissimos?
+    </p>
+    <div class="d-flex" style="gap: 20px">
+      <button class="btn btn-primary btn-large">Contact Us</button>
+      <button class="btn btn-primary btn-large">Get started</button>
+    </div>
+  </div>
+  <div class="col-xs-12 col-lg-5 justify-content-end">
+    {% if page == 'register' %} {% include '_register.html' %} {% else %} {%
+    include '_login.html' %} {% endif %}
+  </div>
+</div>
+{% endblock %}

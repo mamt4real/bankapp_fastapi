@@ -1,0 +1,38 @@
+<header class="header px-4 py-2 mb-2">
+  <div class="d-flex justify-content-between">
+    <div class="brand d-flex">
+      <img
+        src="{{ url_for('static', path='/img/logo.jpeg') }}"
+        class="brand_logo"
+        alt=""
+      />
+      <h4 class="brand_name">SmartBank</h4>
+    </div>
+    {% if user %}
+    <div class="user-info d-flex">
+      <img
+        src="{{ url_for('static', path='/img/user.png') }}"
+        alt=""
+        class="avatar"
+      />
+      <div class="user-info--text">
+        <span>{{ user.customer_name }}</span>
+        <a
+          class="logout-lnk"
+          href="/logout"
+          onclick="(()=>localStorage.setItem('token',null))()"
+        >
+          <button class="btn btn-danger logout-btn">
+            <svg class="svg_icons btn_icons">
+              <use
+                xlink:href="{{ url_for('static', path='/img/icons.svg#icon-power') }}"
+              />
+            </svg>
+            Logout
+          </button>
+        </a>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</header>

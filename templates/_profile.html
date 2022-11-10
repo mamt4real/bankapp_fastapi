@@ -1,0 +1,115 @@
+<div class="row menu_page userprofile">
+  <div class="col-lg-8 col-sm-6 p-4">
+    <h4 class="text-center display-3 text-primary text-medium submenu_title">
+      Profile
+    </h4>
+    <div class="d-flex">
+      <img
+        src="{{ url_for('static', path='/img/user.png') }}"
+        class="userprofile--img"
+        alt=""
+      />
+      <div
+        class=""
+        style="
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+        "
+      >
+        <h5>{{user.customer_name}}</h5>
+        <h6>{{user.clearance|upper}}</h6>
+        <button class="btn btn-outline btn-primary">
+          <svg class="svg_icons btn_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-camera') }}"
+            />
+          </svg>
+          Upload
+        </button>
+      </div>
+    </div>
+    <div class="userprofile__details">
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-user') }}"
+            />
+          </svg>
+          Full Name:
+        </span>
+        <span class="value">{{user.customer_name}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-mail') }}"
+            />
+          </svg>
+          Email Address:
+        </span>
+        <span class="value">{{user.customer_email}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-anchor') }}"
+            />
+          </svg>
+          BVN :
+        </span>
+        <span class="value">{{user.customer_bvn}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-phone') }}"
+            />
+          </svg>
+          Phone Number :
+        </span>
+        <span class="value">{{user.customer_phone}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-map-pin') }}"
+            />
+          </svg>
+          Home Address :
+        </span>
+        <span class="value">{{user.customer_address}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-calendar') }}"
+            />
+          </svg>
+          Date Registered :
+        </span>
+        <span class="value">{{user.created_at.strftime("%Y-%m-%d")}}</span>
+      </div>
+      <div>
+        <span class="key">
+          <svg class="svg_icons">
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-credit-card') }}"
+            />
+          </svg>
+          No of Accounts :
+        </span>
+        <span class="value">{{user.accounts | length}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="p-4 col-lg-4 col-sm-6">
+    {% include '_register.html' %}{% include '_update_password.html' %}
+  </div>
+</div>

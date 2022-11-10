@@ -1,0 +1,112 @@
+<div class="menu_page transactions px-4">
+  <h4 class="text-center display-3 text-primary text-medium submenu_title">
+    My transactions
+  </h4>
+  <form action="" class="row my-2">
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="account_no">Account</label>
+      <select
+        required
+        id="account_no"
+        class="custom-select"
+        name="account_no"
+        value="{{account_no}}"
+      >
+        <option disabled>Select Account</option>
+        {% for account in user.accounts %}
+        <option value="{{account.account_no}}">{{account.account_no}}</option>
+        {% endfor %}
+      </select>
+    </div>
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="name">From</label>
+      <input
+        type="date"
+        class="form-control"
+        placeholder="From"
+        value="{{from_d}}"
+        id="from_d"
+        name="from_d"
+      />
+    </div>
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="name">To</label>
+      <input
+        type="date"
+        class="form-control"
+        placeholder="To"
+        id="to_d"
+        value="{{to_d}}"
+        name="to_d"
+      />
+    </div>
+    <div class="form-group col-lg-3 col-md-4 col-sm-6 col-xs-12">
+      <label class="text-primary" for="">Category</label>
+      <select
+        id="transaction_type"
+        class="custom-select"
+        name="transaction_type"
+        value="{{ transaction_type }}"
+        required
+      >
+        <option value="%">All</option>
+        <option value="%Cr%">Credit</option>
+        <option value="%Dr%">Debit</option>
+      </select>
+    </div>
+    <div class="col-12 justify-content-center">
+      <button type="submit" class="btn btn-primary">Fetch</button>
+    </div>
+  </form>
+  <div class="table-responsive">
+    <table class="table table-hover .auto-w">
+      <thead>
+        <tr class="bg-primary">
+          <th scope="col">S/N</th>
+          <th scope="col">Transaction Date</th>
+          <th scope="col">Amount</th>
+          <th scope="col" class="text-center">Category</th>
+          <th scope="col">Description</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for tr in transactions %}
+        <tr>
+          <td>{{loop.index}}</td>
+          <td>{{tr.transaction_date.strftime("%Y-%m-%d %H:%M")}}</td>
+          <td
+            class="text-right {% if tr.transaction_type == 'Dr' %}debit{% else %}credit{% endif %}"
+          >
+            {{tr.transaction_amount | currency}}
+          </td>
+          <td
+            class="text-center {% if tr.transaction_type == 'Dr' %} debit {% else %} credit {% endif %}"
+          >
+            {{tr.transaction_type | trantype}}
+          </td>
+          <td>{{tr.transaction_desc}}</td>
+        </tr>
+        {% endfor %}
+        <tr class="bg-secondary">
+          <th class="text-right" colspan="2">Total</th>
+          <th class="text-right">{{transactions | totaltran | currency}}</th>
+          <th class="" colspan="2"></th>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<script>
+  const query = location.search.substring(1)
+  if (query) {
+    const params = query.split('&').map((a) => a.split('='))
+    const type = params.pop()
+    for (const [key, val] of params) document.getElementById(key).value = val
+    document.getElementById(type[0]).value = type[1].replace(/%25/g, '%')
+  } else {
+    document.getElementById('from_d').valueAsDate = new Date()
+    document.getElementById('to_d').valueAsDate = new Date(
+      Date.now() + 1000 * 60 * 60 * 24
+    )
+  }
+</script>

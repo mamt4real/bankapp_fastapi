@@ -1,0 +1,142 @@
+<form class="loginform" id="register-update-form">
+  <h4 class="text-center mb-3">
+    {% if user %}Update Profile{% else %} Register {% endif %}
+  </h4>
+
+  {% if message %}
+  <div class="message text-center mb-2" id="message">{{message}}</div>
+  {% endif %}
+  <div class="form-outline mb-2">
+    <input
+      type="text"
+      id="customer_name"
+      name="customer_name"
+      class="form-control"
+      {%
+      if
+      user
+      %}
+      value="{{user.customer_name}}"
+      readonly
+      {%
+      endif
+      %}
+      required
+    />
+    <label class="form-label" for="customer_name"> Full Name </label>
+  </div>
+  <div class="form-outline mb-2">
+    <input
+      required
+      type="text"
+      id="form2Example1"
+      name="customer_email"
+      class="form-control"
+      {%
+      if
+      user
+      %}
+      value="{{user.customer_email}}"
+      readonly
+      {%
+      endif
+      %}
+    />
+    <label class="form-label" for="form2Example1"> Email address </label>
+  </div>
+  <div class="form-outline mb-2">
+    <input
+      required
+      type="text"
+      id="customer_bvn"
+      name="customer_bvn"
+      class="form-control"
+      {%
+      if
+      user
+      %}
+      value="{{user.customer_bvn}}"
+      {%
+      endif
+      %}
+    />
+    <label class="form-label" for="customer_bvn"> Bvn Number </label>
+  </div>
+  <div class="form-outline mb-2">
+    <input
+      required
+      type="text"
+      id="customer_phone"
+      name="customer_phone"
+      class="form-control"
+      {%
+      if
+      user
+      %}
+      value="{{user.customer_phone}}"
+      {%
+      endif
+      %}
+    />
+    <label class="form-label" for="customer_phone"> Phone Number </label>
+  </div>
+  <div class="form-outline mb-2">
+    <input
+      required
+      type="text"
+      id="customer_address"
+      name="customer_address"
+      class="form-control"
+      {%
+      if
+      user
+      %}
+      value="{{user.customer_address}}"
+      {%
+      endif
+      %}
+    />
+    <label class="form-label" for="customer_address"> Home Address </label>
+  </div>
+  {% if user %}
+  <button
+    type="submit"
+    name="operation"
+    value="update"
+    class="btn btn-primary btn-block mb-3"
+  >
+    Update
+  </button>
+  {% else %}
+  <div class="form-outline mb-2">
+    <input
+      type="password"
+      id="password"
+      name="password"
+      class="form-control"
+      required
+    />
+    <label class="form-label" for="password"> Password </label>
+  </div>
+  <div class="form-outline mb-2">
+    <input
+      type="password"
+      id="confirm_pass"
+      name="confirm_pass"
+      class="form-control"
+    />
+    <label class="form-label" for="confirm_pass">Confirm Password </label>
+  </div>
+  <button
+    type="submit"
+    name="operation"
+    value="register"
+    class="btn btn-primary btn-block mb-3"
+  >
+    Register
+  </button>
+  <div class="text-center">
+    <p>Already have an account? <a href="/?page=home">Login</a></p>
+  </div>
+  {% endif %}
+</form>

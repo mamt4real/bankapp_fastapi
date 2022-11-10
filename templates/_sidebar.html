@@ -1,0 +1,147 @@
+<nav class="sidenav p-4 mx-2 h-100">
+  <ul>
+    <li
+      class="{% if page == '_profile.html' %} active {% endif %}"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Profile"
+    >
+      <a href="/dashboard">
+        <svg>
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-user') }}"
+          />
+        </svg>
+        <span>Profile</span>
+      </a>
+    </li>
+    <li
+      class="{% if page == '_accounts.html' %} active {% endif %}"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Accounts"
+    >
+      <a href="/dashboard/accounts">
+        <svg>
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-credit-card') }}"
+          />
+        </svg>
+        <span>Accounts</span>
+      </a>
+    </li>
+    <li
+      class="{% if page == '_transactions.html' %} active {% endif %}"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Transactions"
+    >
+      <a href="/dashboard/transactions">
+        <svg>
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-bookmark') }}"
+          />
+        </svg>
+        <span>Transactions</span>
+      </a>
+    </li>
+    <li
+      class="{% if page == '_banking.html' %} active {% endif %}"
+      data-toggle="tooltip"
+      data-placement="top"
+      title="Banking"
+    >
+      <a href="/dashboard/banking">
+        <svg>
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-book-open') }}"
+          />
+        </svg>
+        <span>Banking</span>
+      </a>
+    </li>
+  </ul>
+  {% if user.clearance == 'admin' %}
+  <div class="admin_menus mt-lg-5 mt-md-0">
+    <h6 class="text-center">Admin</h6>
+    <ul>
+      <li
+        class="{% if page == '_dashboard.html' %} active {% endif %}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Dashboard"
+      >
+        <a href="/admin/dashboard">
+          <svg>
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-plus-square') }}"
+            />
+          </svg>
+
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li
+        class="{% if page == '_customers.html' %} active {% endif %}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Customers"
+      >
+        <a href="/admin/customers">
+          <svg>
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-users') }}"
+            />
+          </svg>
+          <span>Customers</span></a
+        >
+      </li>
+      <li
+        class="{% if page == '_allaccounts.html' %} active {% endif %}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Accounts"
+      >
+        <a href="/admin/accounts">
+          <svg>
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-credit-card') }}"
+            />
+          </svg>
+          <span>Accounts</span></a
+        >
+      </li>
+      <li
+        class="{% if page == '_alltransactions.html' %} active {% endif %}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Transactions"
+      >
+        <a href="/admin/transactions">
+          <svg>
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-bookmark') }}"
+            />
+          </svg>
+          <span>Transactions</span></a
+        >
+      </li>
+      <li
+        class="{% if page == '_prile.html' %} active {% endif %}"
+        data-toggle="tooltip"
+        data-placement="top"
+        title="Staffs"
+      >
+        <a href="#manage">
+          <svg>
+            <use
+              xlink:href="{{ url_for('static', path='/img/icons.svg#icon-users') }}"
+            />
+          </svg>
+          <span>Staffs</span></a
+        >
+      </li>
+    </ul>
+  </div>
+  {% endif %}
+</nav>

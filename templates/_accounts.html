@@ -1,0 +1,50 @@
+<div class="row menu_page accounts">
+    <div class="col-lg-8 col-sm-6 p-4">
+  <h4 class="text-center display-3 text-primary text-medium submenu_title">
+    My Accounts
+  </h4>
+  <div class="row justify-content-around mt-2 pt-2">
+    {% for acct in user.accounts %}
+    <div class="card account_cards border-primary col-lg-5 col-md-12 p-0">
+    <div class="card-header bg-primary text-white">
+        {{acct.account_no}} ({{acct.account_type}})
+    </div>
+      <div class="card-body">
+        {{acct.account_name}}
+        <p class="card-text ">
+          <h6 class="card-title text-bold text-primary">Balance</h6>
+          <h6 class="card-subtitle display-3 balance text-primary" id="acc_bal_{{acct.account_no}}" data-value="{{acct.account_balance}}">{{ acct.account_balance | currency }}</h6>
+          <svg class="account_icons" id="hide_icon_{{acct.account_no}}" onclick="hideShowBalance(this)">
+          <use
+            xlink:href="{{ url_for('static', path='/img/icons.svg#icon-eye-off') }}"
+          />
+        </svg>
+        </p>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  </div>
+  <div class="p-4 col-lg-4 col-sm-6">
+    {% include '_accountCreate.html' %}
+  </div>
+</div>
+<script>
+    function hideShowBalance(elem){
+        const icon = document.querySelector(`#${elem.id} use`)
+        const bal = document.getElementById(`acc_bal_${elem.id.slice(-10)}`)
+        const href = icon.getAttribute("xlink:href").toString()
+        if(href.endsWith("-off")){
+            icon.setAttribute("xlink:href", href.slice(0,-4))
+            bal.innerText = "*".repeat(4)
+        }else{
+            icon.setAttribute("xlink:href",href + "-off")
+            bal.innerText = Number(bal.getAttribute("data-value")).toLocaleString('us-US', {
+    style: 'currency',
+    currency: 'NGN',
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  })
+        }
+    }
+</script>

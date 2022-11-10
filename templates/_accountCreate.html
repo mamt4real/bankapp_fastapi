@@ -1,0 +1,34 @@
+<form class="loginform" id="accountForm">
+  <h4 class="text-center mb-3">
+    {% if user.clearance == 'customer' %}Request For an Account {% else %}
+    Create an Account {% endif %}
+  </h4>
+  <div class="form-outline mb-2">
+    <label class="form-label" for="account_name">Account Name </label>
+    <input type="text" id="account_name" name="account_name"
+    class="form-control" {% if user.clearance == 'customer' %}
+    placeholder="{{user.customer_name}}" {% endif %} required />
+  </div>
+  <div class="form-outline mb-2">
+    <label class="text-primary" for="">Account Type</label>
+    <select id="account_type" class="custom-select" name="account_type">
+      <option value="">Select Type</option>
+      <option value="Savings">Savings</option>
+      <option value="Current">Current</option>
+    </select>
+  </div>
+  <div class="form-outline mb-2">
+    <label class="form-label" for="customer_id"> Customer ID </label>
+    <input required type="text" id="customer_id" name="customer_id"
+    class="form-control" {% if (user.clearance | lower) == 'customer' %}
+    value="{{user.customer_id}}" readonly {% endif %} />
+  </div>
+  <button
+    type="submit"
+    name="operation"
+    value="update"
+    class="btn btn-primary btn-block mb-3"
+  >
+    Submit
+  </button>
+</form>
