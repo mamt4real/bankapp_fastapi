@@ -15,7 +15,7 @@ class Customer(Base):
     customer_phone = Column(String(20))
     customer_bvn = Column(CHAR(12), nullable=False)
     password = Column(String, nullable=False)
-    clearance = Column(String(30), server_default=text('customer'))
+    clearance = Column(String(30), server_default='Customer')
     created_at = Column(TIMESTAMP(timezone=True),
                         nullable=False, server_default=text('Now()'))
 
@@ -31,7 +31,8 @@ class Customer(Base):
 class Account(Base):
     __tablename__ = 'accounts'
     account_no = Column(CHAR(10), Sequence(
-        name='account_no_seq', start=5000000000, increment=1, minvalue=5000000000, maxvalue=5999999999), primary_key=True, server_default=text("nextval('account_no_seq'::regclass)"))
+        name='account_no_seq', start=5000000000, increment=1, minvalue=5000000000, maxvalue=5999999999), primary_key=True,  server_default=text(
+        "nextval('account_no_seq'::regclass)"))
     account_name = Column(String(150), nullable=False)
     account_type = Column(String(50), nullable=False,
                           server_default=text('Savings'))
@@ -50,7 +51,8 @@ class CreditCard(Base):
     __tablename__ = "credit_cards"
     id = Column(Integer, primary_key=True)
     card_no = Column(CHAR(16), Sequence(
-        name='card_no_seq', start=5555000000000000, increment=1, minvalue=5555000000000000, maxvalue=5555999999999999), unique=True, nullable=False, server_default=text("nextval('card_no_seq'::regclass)"))
+        name='card_no_seq', start=5555000000000000, increment=1, minvalue=5555000000000000, maxvalue=5555999999999999), unique=True, nullable=False,
+        server_default=text("nextval('card_no_seq'::regclass)"))
     card_cvv = Column(CHAR(3), nullable=False, default=generateCvv)
     card_pin = Column(CHAR(4), nullable=False)
     issued_date = Column(TIMESTAMP(timezone=True),
